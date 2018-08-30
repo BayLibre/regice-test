@@ -23,7 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from regicepkg import get_resource_list, open_resource
+from regicecommon import get_resource_list, open_resource
 
 def is_compatible_with(name):
     return name == 'test'
