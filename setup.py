@@ -44,7 +44,7 @@ setup(
     include_package_data=True,
     entry_points={
         'regice': [
-                'is_compatible_with = regicetest.regicetest:is_compatible_with',
+                'is_compatible_with = regicetest.BL123:is_compatible_with',
                 'list_svd = regicetest.regicetest:list_svd',
                 'load_svd = regicetest.regicetest:load_svd',
         ]

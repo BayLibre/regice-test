@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<device schemaVersion="1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD.xsd" >
+  <vendor>BayLibre</vendor>
+  <vendorID>BayLibre</vendorID>
+  <name>BL123</name>
+  <version>1.0</version>
+  <description>Test SoC, for framework and application testing</description>
+  <licenseText>MIT LIcense, Copyright (c) 2018 BayLibre</licenseText>
+  <cpu>
+    <name>other</name>
+    <revision>r1p0</revision>
+    <endian>little</endian>
+    <mpuPresent>false</mpuPresent>
+    <fpuPresent>false</fpuPresent>
+    <nvicPrioBits>0</nvicPrioBits>
+    <vendorSystickConfig>false</vendorSystickConfig>
+  </cpu>
+  <addressUnitBits>8</addressUnitBits>
+  <width>32</width>
+  <size>32</size>
+  <access>read-write</access>
+  <resetValue>0x00000000</resetValue>
+  <resetMask>0xFFFFFFFF</resetMask>
+  <peripherals>
+    <!-- Clock -->
+    <peripheral>
+      <name>CLOCK0</name>
+      <version>1.0</version>
+      <description>Clock module</description>
+      <groupName>CLOCK</groupName>
+      <baseAddress>0x40000000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x100</size>
+        <usage>registers</usage>
+      </addressBlock>
+
+      <registers>
+        <register>
+          <dim>3</dim>
+          <dimIncrement>3</dimIncrement>
+          <dimIndex>0,1,2</dimIndex>
+          <name>OSC%s</name>
+          <description>OSC%s Register</description>
+          <addressOffset>0x00</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>EN</name>
+              <description>Enable</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disable</name>
+                  <description>OSC%s is disabled and does not operate</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enable</name>
+                  <description>OSC%s is enabled and can operate</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>PLL</name>
+          <description>PLL Register</description>
+          <addressOffset>0x10</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>EN</name>
+              <description>Enable</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disable</name>
+                  <description>PLL is disabled and does not operate</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enable</name>
+                  <description>PLL is enabled and can operate</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>RDY</name>
+              <description>Ready</description>
+              <bitOffset>30</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disabled</name>
+                  <description>PLL is disabled and does not operate</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Ready</name>
+                  <description>PLL is enabled and operate</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>MULT</name>
+              <description>PLL multiplier</description>
+              <bitOffset>24</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>DIV</name>
+              <description>PLL divider</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>SRC</name>
+              <description>PLL source</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>OSC0</name>
+                  <description>Select OSC0 as PLL source.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSC1</name>
+                  <description>Select OSC1 as PLL source.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSC2</name>
+                  <description>Select OSC2 as PLL source.</description>
+                  <value>2</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>BUS0</name>
+          <description>BUS0 clock Register</description>
+          <addressOffset>0x14</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>DIV</name>
+              <description>BUS0 divider</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+            </field>
+            <field>
+              <name>SRC</name>
+              <description>BUS0 source</description>
+              <bitOffset>0</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>OSC0</name>
+                  <description>Select OSC0 as PLL source.</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSC1</name>
+                  <description>Select OSC1 as PLL source.</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>OSC2</name>
+                  <description>Select OSC2 as PLL source.</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>PLL</name>
+                  <description>Select PLL as BUS0 source.</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>BUS1</name>
+          <description>BUS1 clock Register</description>
+          <addressOffset>0x18</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>DIV</name>
+              <description>BUS1 divider</description>
+              <bitOffset>20</bitOffset>
+              <bitWidth>4</bitWidth>
+              <access>read-write</access>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <dim>4</dim>
+          <dimIncrement>3</dimIncrement>
+          <dimIndex>0,1,2</dimIndex>
+          <name>GPIO%s</name>
+          <description>GPIO%s clock Register</description>
+          <addressOffset>0x20</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>EN</name>
+              <description>Enable</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disable</name>
+                  <description>GPIO%s is disabled and does not operate</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enable</name>
+                  <description>GPIO%s is enabled and can operate</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <dim>2</dim>
+          <dimIncrement>3</dimIncrement>
+          <dimIndex>0,1,2</dimIndex>
+          <name>UART%s</name>
+          <description>UART%s clock Register</description>
+          <addressOffset>0x20</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00000000</resetValue>
+          <resetMask>0x00000000</resetMask>
+
+          <fields>
+            <field>
+              <name>EN</name>
+              <description>Enable</description>
+              <bitOffset>31</bitOffset>
+              <bitWidth>1</bitWidth>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>Disable</name>
+                  <description>UART%s is disabled and does not operate</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Enable</name>
+                  <description>UART%s is enabled and can operate</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+          </fields>
+        </register>
+      </registers>
+    </peripheral>
+  </peripherals>
+</device>
