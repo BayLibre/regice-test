@@ -40,7 +40,7 @@ setup(
         "Operating System :: GNU/Linux",
         "Programming Language :: Python :: 3.6",
     ],
-    package_data={'RegiceTest': ['regicetest/*.svd']},
+    package_data={'RegiceTest': ['regicetest/*.svd', 'regicetest/*.sim']},
     include_package_data=True,
     entry_points={
         'regice': [
