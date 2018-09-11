@@ -49,9 +49,10 @@ setup(
                 'load_svd = regicetest.regicetest:load_svd',
         ]
     },
-    install_requires=['RegiceCommon'],
+    install_requires=['RegiceCommon', 'RegiceClock'],
     dependency_links=[
         'git+https://github.com/BayLibre/regice-common.git#egg=RegiceCommon',
+        'git+https://github.com/BayLibre/regice-clock.git#egg=RegiceClock',
     ],
 
 )
