@@ -299,5 +299,69 @@
         </register>
       </registers>
     </peripheral>
+
+    <!-- CPU PMU -->
+    <peripheral>
+      <name>PMU0</name>
+      <version>1.0</version>
+      <description>CPU PMU</description>
+      <groupName>CPU PMU</groupName>
+      <baseAddress>0x40010000</baseAddress>
+      <size>32</size>
+      <access>read-write</access>
+      <addressBlock>
+        <offset>0</offset>
+        <size>0x1000</size>
+        <usage>registers</usage>
+      </addressBlock>
+      <registers>
+        <register>
+          <name>CTRL</name>
+          <description>CTRL Register</description>
+          <addressOffset>0x00</addressOffset>
+          <fields>
+            <field>
+              <name>EN</name>
+              <bitOffset>31</bitOffset>
+            </field>
+            <field>
+              <name>RST</name>
+              <bitOffset>30</bitOffset>
+            </field>
+            <field>
+              <name>PAUSE</name>
+              <bitOffset>29</bitOffset>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <dim>8</dim>
+          <dimIncrement>4</dimIncrement>
+          <dimIndex>0,1,2,3</dimIndex>
+          <name>CNTEVT%s</name>
+          <description>CNTEVT%s Register</description>
+          <addressOffset>0x100</addressOffset>
+          <fields>
+            <field>
+              <name>EN</name>
+              <bitOffset>31</bitOffset>
+            </field>
+            <field>
+              <name>EVT</name>
+              <bitOffset>0</bitOffset>
+              <bitWidth>8</bitWidth>
+            </field>
+          </fields>
+        </register>
+        <register>
+          <dim>8</dim>
+          <dimIncrement>4</dimIncrement>
+          <dimIndex>0,1,2,3</dimIndex>
+          <name>CNT%s</name>
+          <description>CNT%s Register</description>
+          <addressOffset>0x120</addressOffset>
+        </register>
+      </registers>
+    </peripheral>
   </peripherals>
 </device>

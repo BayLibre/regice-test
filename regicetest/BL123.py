@@ -31,6 +31,7 @@ class TestDevice(Device):
     def __init__(self, svd, client):
         super(TestDevice, self).__init__(svd, client)
         BL123ClockTree(self)
+        BL123PMU(self)
 
 def device_init(svd, client):
     return TestDevice(svd, client)
