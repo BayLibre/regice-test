@@ -24,55 +24,13 @@
 # SOFTWARE.
 
 from libregice.device import Device
-from regiceclock import ClockTree, Gate, Mux, PLL, Divider, FixedClock
-
-def MHz(freq):
-    return freq * 1000 * 1000
-
-def is_compatible_with(name):
-    return name == 'BL123'
-
-def pll_get_freq(pll):
-    PLL = pll.device.CLOCK0.PLL
-    if PLL.EN == 0:
-        return 0
-    return pll.get_parent().get_freq() * (PLL.MULT / PLL.DIV)
+from regicetest.clock import BL123ClockTree
+from regicetest.pmu import BL123PMU
 
 class TestDevice(Device):
-    def clock_init(self):
-        """
-            Init the clock tree
-        """
-        clk0 = self.CLOCK0
-        self.tree = ClockTree(self)
-        FixedClock(tree=self.tree, name='OSC0',
-                   freq=MHz(1), en_field=clk0.OSC0.EN)
-        FixedClock(tree=self.tree, name='OSC1',
-                   freq=MHz(8), en_field=clk0.OSC1.EN)
-        FixedClock(tree=self.tree, name='OSC2',
-                   freq=MHz(16), en_field=clk0.OSC2.EN)
-        Mux(tree=self.tree, name='PLLSRC',
-            parents={0: 'OSC0', 1: 'OSC1', 2: 'OSC2'}, mux_field=clk0.PLL.SRC)
-        PLL(tree=self.tree, name='PLL', parent='PLLSRC',
-            get_freq=pll_get_freq, en_field=clk0.PLL.EN)
-        Mux(tree=self.tree, name='BUS0SRC', mux_field=clk0.BUS0.SRC,
-            parents={0: 'OSC0', 1: 'OSC1', 2: 'OSC2', 3: 'PLL'})
-        Divider(tree=self.tree, name='BUS0DIV', parent='BUS0SRC',
-            div_field=clk0.BUS0.DIV, div_type=Divider.POWER_OF_TWO)
-        Divider(tree=self.tree, name='BUS1DIV', parent='BUS0DIV',
-            div_field=clk0.BUS1.DIV, div_type=Divider.POWER_OF_TWO)
-        Gate(tree=self.tree, name='UART0', parent='BUS0DIV',
-             en_field=clk0.UART0.EN)
-        Gate(tree=self.tree, name='UART1', parent='BUS0DIV',
-             en_field=clk0.UART1.EN)
-        Gate(tree=self.tree, name='GPIO0', parent='BUS1DIV',
-             en_field=clk0.GPIO0.EN)
-        Gate(tree=self.tree, name='GPIO1', parent='BUS1DIV',
-             en_field=clk0.GPIO1.EN)
-        Gate(tree=self.tree, name='GPIO2', parent='BUS1DIV',
-             en_field=clk0.GPIO2.EN)
-        Gate(tree=self.tree, name='GPIO3', parent='BUS1DIV',
-             en_field=clk0.GPIO3.EN)
+    def __init__(self, svd, client):
+        super(TestDevice, self).__init__(svd, client)
+        BL123ClockTree(self)
 
 def device_init(svd, client):
     return TestDevice(svd, client)
