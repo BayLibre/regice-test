@@ -76,3 +76,6 @@ class TestDevice(Device):
 
 def device_init(svd, client):
     return TestDevice(svd, client)
+
+def is_compatible_with(name):
+    return name == 'BL123'
